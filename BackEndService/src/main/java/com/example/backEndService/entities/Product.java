@@ -23,4 +23,5 @@ public class Product {
     private Double price;
     private Integer status;
     private Long categoryId;
+    private Long brandId;
 }

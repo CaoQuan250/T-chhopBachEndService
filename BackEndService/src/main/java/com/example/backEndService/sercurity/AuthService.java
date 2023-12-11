@@ -117,7 +117,7 @@ public class AuthService {
             sendMail(customer);
             throw new ApplicationException(ERROR.ACCOUNT_INACTIVE);
         }
-        ShoppingCart cart = shoppingCartRepository.findByCustomerId(customer.getId());
+        ShoppingCart cart = shoppingCartRepository.findByCustomerId(customer.getId()).get();
         TokenInfo info = new TokenInfo();
         info.setUserId(user.getId());
         info.setUsername(user.getUsername());

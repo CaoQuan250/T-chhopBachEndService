@@ -2,6 +2,7 @@ package com.example.backEndService.serviceImp;
 
 import com.example.backEndService.base.BaseResponse;
 import com.example.backEndService.base.NoDataBaseResponse;
+import com.example.backEndService.common.Constants;
 import com.example.backEndService.entities.Product;
 import com.example.backEndService.exception.ApplicationException;
 import com.example.backEndService.exception.ERROR;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class ProductServiceImp implements ProductService {
     @Autowired
@@ -19,7 +21,7 @@ public class ProductServiceImp implements ProductService {
 
     public NoDataBaseResponse save(Product product){
 
-        if (product.getName().isBlank()) {
+        if (product.getName().isBlank() || product.getPrice() == null || product.getPrice().isNaN()) {
             throw new ApplicationException(ERROR.NOT_NULL);
         } else {
             productRepository.save(product);
@@ -37,9 +39,19 @@ public class ProductServiceImp implements ProductService {
     }
 
     public BaseResponse<Product> findById(Long id) throws ApplicationException{
-        Optional<Product> employee = productRepository.findById(id);
-        if (employee.isPresent()){
-            return new BaseResponse<>(employee.get());
+        Optional<Product> product = productRepository.findById(id);
+        if (product.isPresent()){
+            return new BaseResponse<>(product.get());
+        } else {
+            throw new ApplicationException(ERROR.NO_DATA_FOUND);
+        }
+    }
+
+    @Override
+    public BaseResponse<Product> findByName(String name) {
+        Optional<Product> product = productRepository.findByName(name);
+        if (product.isPresent()){
+            return new BaseResponse<>(product.get());
         } else {
             throw new ApplicationException(ERROR.NO_DATA_FOUND);
         }

@@ -3,6 +3,8 @@ package com.example.backEndService.base;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class BaseResponse<T> {
@@ -30,4 +32,5 @@ public class BaseResponse<T> {
         this.message = "Success";
         this.data=data;
     }
+
 }
