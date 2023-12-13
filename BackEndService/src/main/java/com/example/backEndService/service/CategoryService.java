@@ -16,4 +16,6 @@ public interface CategoryService {
     BaseResponse<Category> update(Long id, Category category);
 
     NoDataBaseResponse delete(Long id);
+
+    BaseResponse<Category> findCategoriesByName(String name);
 }

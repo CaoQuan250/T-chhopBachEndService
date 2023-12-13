@@ -77,5 +77,15 @@ public class CategoryServiceImpl implements CategoryService {
         }
     }
 
+    @Override
+    public BaseResponse<Category> findCategoriesByName(String name) {
+        Optional<Category> categories = categoryRepository.findCategoriesByName(name);
+        if (categories.isPresent()){
+            return new BaseResponse<>(categories.get());
+        } else {
+            throw new ApplicationException(ERROR.NO_DATA_FOUND);
+        }
+    }
+
 
 }

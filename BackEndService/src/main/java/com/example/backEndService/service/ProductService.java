@@ -17,5 +17,5 @@ public interface ProductService {
     BaseResponse<Product> update(Long id, Product product);
 
     NoDataBaseResponse delete(Long id);
-    BaseResponse<Product> findByName(String name);
+//    BaseResponse<Product> findByName(String name);
 }

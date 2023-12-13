@@ -33,10 +33,10 @@ public class ProductController extends BaseController {
         return createResponse(productService.findById(id));
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<BaseResponse<Product>> findByName(@RequestParam String name) throws ApplicationException {
-        return createResponse(productService.findByName(name));
-    }
+//    @GetMapping("/search")
+//    public ResponseEntity<BaseResponse<Product>> findByName(@RequestParam String name) throws ApplicationException {
+//        return createResponse(productService.findByName(name));
+//    }
 
     @PutMapping("/edit/{id}")
     public ResponseEntity<BaseResponse<Product>> edit(@PathVariable Long id,@RequestBody Product product) throws ApplicationException {

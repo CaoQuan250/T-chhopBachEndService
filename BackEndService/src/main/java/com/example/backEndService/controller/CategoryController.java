@@ -35,6 +35,11 @@ public class CategoryController extends BaseController {
         return createResponse(categoryService.findById(id));
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<BaseResponse<Category>> findCategoriesByName(@RequestParam String name) throws ApplicationException {
+        return createResponse(categoryService.findCategoriesByName(name));
+    }
+
     @PutMapping("/edit/{id}")
     public ResponseEntity<BaseResponse<Category>> edit(@PathVariable Long id,@RequestBody Category category) throws ApplicationException {
         return createResponse(categoryService.update(id, category));

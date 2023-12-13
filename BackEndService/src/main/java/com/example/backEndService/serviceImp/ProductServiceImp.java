@@ -47,15 +47,15 @@ public class ProductServiceImp implements ProductService {
         }
     }
 
-    @Override
-    public BaseResponse<Product> findByName(String name) {
-        Optional<Product> product = productRepository.findByName(name);
-        if (product.isPresent()){
-            return new BaseResponse<>(product.get());
-        } else {
-            throw new ApplicationException(ERROR.NO_DATA_FOUND);
-        }
-    }
+//    @Override
+//    public BaseResponse<Product> findByName(String name) {
+//        Optional<Product> product = productRepository.findByName(name);
+//        if (product.isPresent()){
+//            return new BaseResponse<>(product.get());
+//        } else {
+//            throw new ApplicationException(ERROR.NO_DATA_FOUND);
+//        }
+//    }
 
     public BaseResponse<Product> update(Long id, Product product) throws ApplicationException{
         Optional<Product> find = productRepository.findById(id);
