@@ -9,6 +9,7 @@ import com.example.backEndService.exception.ERROR;
 import com.example.backEndService.repository.ProductRepository;
 import com.example.backEndService.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,6 +30,7 @@ public class ProductServiceImp implements ProductService {
         return new NoDataBaseResponse();
     }
 
+    @Cacheable(cacheNames = "product-list", key = "'#key'")
     public BaseResponse<List<Product>> findAll() throws ApplicationException{
         List<Product> products = productRepository.findAll();
         if (!products.isEmpty()){
@@ -38,6 +40,7 @@ public class ProductServiceImp implements ProductService {
         }
     }
 
+    @Cacheable(cacheNames = "product-detail", key = "'#key'")
     public BaseResponse<Product> findById(Long id) throws ApplicationException{
         Optional<Product> product = productRepository.findById(id);
         if (product.isPresent()){

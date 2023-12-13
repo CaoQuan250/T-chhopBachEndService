@@ -3,11 +3,12 @@ package com.example.backEndService.base;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Setter
-public class BaseResponse<T> {
+public class BaseResponse<T> implements Serializable {
     private Integer code;
     private String message;
     private T data;

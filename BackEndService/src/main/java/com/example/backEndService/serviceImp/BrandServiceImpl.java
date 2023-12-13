@@ -9,6 +9,7 @@ import com.example.backEndService.exception.ERROR;
 import com.example.backEndService.repository.BrandRepository;
 import com.example.backEndService.service.BrandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
+    @Cacheable(cacheNames = "brand-list", key = "'#key'")
     public BaseResponse<List<Brand>> findAll() {
         List<Brand> brands = brandRepository.findAll();
         if (!brands.isEmpty()){
@@ -44,6 +46,7 @@ public class BrandServiceImpl implements BrandService {
     }
 
     @Override
+    @Cacheable(cacheNames = "order-detail", key = "'#key'")
     public BaseResponse<Brand> findById(Long id) {
         Optional<Brand> categories = brandRepository.findById(id);
         if (categories.isPresent()){

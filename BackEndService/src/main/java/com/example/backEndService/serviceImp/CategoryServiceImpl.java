@@ -9,6 +9,7 @@ import com.example.backEndService.exception.ERROR;
 import com.example.backEndService.repository.CategoryRepository;
 import com.example.backEndService.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,6 +37,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Cacheable(cacheNames = "category-list", key = "'#key'")
     public BaseResponse<List<Category>> findAll() {
         List<Category> categories = categoryRepository.findAll();
         if (!categories.isEmpty()){
@@ -46,6 +48,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Cacheable(cacheNames = "category-detail", key = "'#key'")
     public BaseResponse<Category> findById(Long id) {
         Optional<Category> categories = categoryRepository.findById(id);
         if (categories.isPresent()){

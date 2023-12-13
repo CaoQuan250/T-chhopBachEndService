@@ -15,6 +15,7 @@ import com.example.backEndService.repository.ProductRepository;
 import com.example.backEndService.repository.ShoppingCartRepository;
 import com.example.backEndService.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
@@ -117,6 +118,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Cacheable(cacheNames = "order-list", key = "'#key'")
     public BaseResponse<List<Orders>> findAll() {
         List<Orders> orders = orderRepository.findAll();
         if (!orders.isEmpty()){
@@ -127,6 +129,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Cacheable(cacheNames = "order-list", key = "'#key'")
     public BaseResponse<Orders> findById(Long id) {
         Optional<Orders> order = orderRepository.findById(id);
         if (order.isPresent()){
