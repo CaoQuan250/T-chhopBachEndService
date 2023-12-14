@@ -3,7 +3,6 @@ package com.example.backEndService.controller;
 import com.example.backEndService.base.BaseController;
 import com.example.backEndService.base.BaseResponse;
 import com.example.backEndService.base.NoDataBaseResponse;
-import com.example.backEndService.entities.Product;
 import com.example.backEndService.entities.ProductSpec;
 import com.example.backEndService.exception.ApplicationException;
 import com.example.backEndService.service.ProductSpecService;
