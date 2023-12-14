@@ -75,11 +75,10 @@ public class OrderServiceImpl implements OrderService {
 
             //persist to DB
             orderRepository.save(orders);
-
-            //delete cart item after save to order
-            cartItemRepository.deleteAllByCartId(findCart.get().getId());
         }
+        //delete cart item after save to order
 
+        cartItemRepository.deleteAllByCartId(findCart.get().getId());
         return new NoDataBaseResponse();
     }
 
