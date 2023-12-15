@@ -104,10 +104,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public NoDataBaseResponse save(Orders orders) {
-        if (orders.getCustomerId() == null || orders.getCustomerId().equals(0)) {
+        if (orders.getCustomerId() == null || orders.getCustomerId() == 0) {
             throw new ApplicationException("CustomerId is null");
         }
-        if (orders.getProductId() == null || orders.getProductId().equals(0)) {
+        if (orders.getProductId() == null || orders.getProductId() == 0) {
             throw new ApplicationException("ProductId is null");
         }
         else {
